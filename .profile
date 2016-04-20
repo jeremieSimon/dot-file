@@ -29,6 +29,7 @@ export GIT_SSH=/usr/bin/ssh
 
 #git 
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --date=relative'
+alias grank='git ls-files -z | xargs -0n1 git blame -w --line-porcelain | grep -a "^author " | sort -f | uniq -c | sort -r'
 alias gdiff='git diff --color --stat'
 alias glast='git log -1 --stat'
 alias gunstage='git reset HEAD --'
@@ -37,7 +38,7 @@ source ~/.git-completion.bash
 
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-
+export GIT_SSH=$(which ssh)
 export KRB5CCNAME=/tmp/krb5cc_${UID}
 
 #fasd
