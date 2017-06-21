@@ -18,6 +18,7 @@ goSsh () {
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+export HISTFILESIZE=300000
 export PATH=$PATH:/Users/je.simon/dev/hadoop-central/hadoop-central
 export PS1="\u@\h\w$ "
 export PROMPT_COMMAND="history -a"
