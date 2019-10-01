@@ -1,4 +1,32 @@
-[[ -s /Users/je.simon/.autojump/etc/profile.d/autojump.sh ]] && source /Users/je.simon/.autojump/etc/profile.d/autojump.sh
+
+
+source ~/.git-completion.bash
+
+# java version mgmt
+alias j12="export JAVA_HOME=`/usr/libexec/java_home -v 12`; java -version"
+#alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
+#alias j10="export JAVA_HOME=`/usr/libexec/java_home -v 10`; java -version"
+#alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
+alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+#alias j7="export JAVA_HOME=`/usr/libexec/java_home -v 1.7`; java -version"
+
+# bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+  . /opt/local/etc/profile.d/bash_completion.sh
+fi
+
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
+#export GOROOT="/usr/local/Cellar/go/1.13/libexec"
+GO111MODULE='on go get .'
+
+
+# custom his
+HISTSIZE=10000
+hstr --show-configuration >> ~/.bashrc
+export HSTR_CONFIG=keywords-matching,hicolor,debug,case-sensitive
+alias hh='hstr'
+bind '"\C-r": "\C-ahstr -- \C-j"'
 
 #shortcuts
 alias l='ls'
@@ -7,19 +35,27 @@ alias visualvm='~/Downloads/visualvm_138/bin/visualvm'
 alias ssh='ssh -o ServerAliveInterval=60'
 alias egrep='egrep --color'
 alias grep='grep --color'
+alias subl='sublime'
 
-prod='je.simon@jobs-prod.hpc.criteo.prod'
-dev='je.simon@jobs-user.hpc.criteo.prod'
+# go thing
+alias go12='/Users/jeremiesimon/dev/open/go1.12/bin/go'
+alias go13='/Users/jeremiesimon/dev/open/go1.13/bin/go'
 
 goSsh () {
     ssh -o ServerAliveInterval=60 $1
+}
+
+# func
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
 }
 
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 export HISTFILESIZE=300000
-export PATH=$PATH:/Users/je.simon/dev/hadoop-central/hadoop-central
 export PS1="\u@\h\w$ "
 export PROMPT_COMMAND="history -a"
 export EDITOR='subl -w'
