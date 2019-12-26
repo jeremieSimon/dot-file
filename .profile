@@ -23,6 +23,11 @@ GO111MODULE='on go get .'
 
 # custom his
 HISTSIZE=10000
+MY_BASH_BLUE="\033[0;34m" #Blue
+MY_BASH_NOCOLOR="\033[0m"
+HISTTIMEFORMAT=`echo -e ${MY_BASH_BLUE}[%F %T] $MY_BASH_NOCOLOR `
+HISTSIZE=20000
+HISTFILESIZE=20000
 hstr --show-configuration >> ~/.bashrc
 export HSTR_CONFIG=keywords-matching,hicolor,debug,case-sensitive
 alias hh='hstr'
@@ -52,7 +57,6 @@ mkcdir ()
       cd -P -- "$1"
 }
 
-
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 export HISTFILESIZE=300000
@@ -72,6 +76,7 @@ alias glast='git log -1 --stat'
 alias gunstage='git reset HEAD --'
 alias gs='git status -sbu'
 source ~/.git-completion.bash
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
@@ -84,3 +89,11 @@ alias g='fasd_cd -d'
 
 #time
 export PS1="\[\e[0;34m\]\@\[\e[m\]\[\e[0;31m\]|\[\e[m\]\[\e[0;32m\]\u-\W\[\e[m\]\[\e[0;32m\]$ \[\e[m\]"
+
+#emacs:
+export PATH=/Applications/Emacs.app/Contents/MacOS:$PATH
+export EDITOR="emacs -nw"
+alias emacs='emacs -nw'
+
+#sugar
+alias cat='bat'
